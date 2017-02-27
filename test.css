@@ -18,8 +18,8 @@ input, button, select, textarea, body {
 
 
 /****************************LESS CSS****************************/
-@baseColor : #233746;
-@buttonMain : #00a0c6;
+@baseColor : #000;
+@buttonMain : #000;
 @buttonCustom: #e54496;
 @darkColor : #636363;
 @lightColor : #fff;
