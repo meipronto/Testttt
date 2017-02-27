@@ -1,0 +1,629 @@
+@import url('https://fonts.googleapis.com/css?family=Overpass:200,300,600,700');
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: "Overpass", Helvetica, Arial, sans-serif;
+	font-weight: 200;
+  strong {
+  	font-weight: 600;
+  }
+}
+
+input, button, select, textarea, body {
+	font-family: "Overpass", Helvetica, Arial, sans-serif;
+	font-weight: 300;
+  strong {
+  	font-weight: 700;
+  }
+}
+
+
+/****************************LESS CSS****************************/
+@baseColor : #233746;
+@buttonMain : #00a0c6;
+@buttonCustom: #e54496;
+@darkColor : #636363;
+@lightColor : #fff;
+@pixelfont: 16px;
+@line-height-base: 1.41;
+
+/*Helper function*/
+.mixin (@a) when (lightness(@a) >= 66%) {
+    color: @darkColor;
+}
+.mixin (@a) when not (lightness(@a) >= 66%) {
+    color: @lightColor;
+}
+::selection {
+    background: @baseColor;
+}
+::-moz-selection {
+    background: @baseColor;
+}
+
+.complementary(@_a){
+    background-color: @_a;
+    .mixin(@_a);
+}
+.btn(@b:@buttonMain){
+    border-color: @b;
+    .complementary(@b);
+    text-shadow: none;
+
+    &:hover,.disabled, [disabled]{
+        background-color: darken(@b, 4%);
+        border-color: darken(@b, 4%);
+        .mixin(@b);
+    }
+
+    &:active, .active, &:focus, .focus{
+        background-color: darken(@b, 8%);
+        border-color: darken(@b, 8%);
+        .mixin(@b);
+  }
+
+}
+.element(@_arg, @font:@_arg) {
+     a:hover,
+     .sidebar-content .nav.nav-tabs.nav-stacked .parent ul a.selected,
+     .sidebar-content .nav li li a:hover,
+     div[role="complementary"] div > ul > li:hover{
+            color:darken(@font,8%)
+     }
+     a,
+    .nav-tabs > .active > a,
+    .nav-tabs > .active > a:hover,
+    .nav-tabs > .active > a:focus,
+    .nav li a:hover,
+    .nav li a:focus,
+    .navbar .nav > li > a:focus,
+    .navbar .nav > li > a:hover,
+    .pagination ul > li > a:hover,
+    .pagination ul > li > a:focus,
+    .pagination ul > .active > a,
+    .pagination ul > .active > span,
+    nav[role="navigation"] .nav-normal > .active > a,
+    nav[role="navigation"] .nav-normal li a:hover,
+    nav[role="navigation"] .nav-pills-square > .active > a,
+    nav[role="navigation"] .nav-bar > li > a:hover,
+    nav[role="navigation"] .nav-bar > li > a:focus,
+    nav[role="navigation"] .nav-bar > .active > a,
+    nav[role="navigation"] .nav-bar-top > .active > a,
+    nav[role="navigation"] .nav-bar-top > li > a:hover,
+    nav[role="navigation"] .nav-bar-underline > .active > a,
+    nav[role="navigation"] .nav-underline > .active > a,
+    nav[role="navigation"] .nav-underline > li > a:hover,
+    nav[role="navigation"] .nav-separator > .active > a,
+    nav[role="navigation"] .nav-separator > li > a:hover,
+    .sidebar-content .nav a.active,
+    div[role="complementary"] div > ul > li:active,
+    .sidebar-content .nav li a:hover,
+    .sidebar-content .nav li a:focus {
+            color: @font;
+    }
+
+    .nav a:hover .caret {
+      border-bottom-color: @font;
+      border-top-color: @font;
+    }
+    .nav-tabs > li > a:hover,
+    .nav-tabs > li > a:focus,
+    .navbar .nav > .active > a,
+    .navbar .nav > .active > a:hover,
+    .navbar .nav > .active > a:focus,
+    .nav-pills > .active > a,
+    .nav-pills > .active > a:hover,
+    .nav-pills > .active > a:focus,
+    .nav-tabs.nav-stacked > .active > a,
+    .nav-tabs.nav-stacked > .active > a:hover,
+    .nav-tabs.nav-stacked > .active > a:focus,
+    .nav-list > .active > a,
+    .nav-list > .active > a:hover,
+    .nav-list > .active > a:focus,
+    .grid li a:hover img,
+    textarea:focus,
+    input[type="text"]:focus,
+    input[type="password"]:focus,
+    input[type="datetime"]:focus,
+    input[type="datetime-local"]:focus,
+    input[type="date"]:focus,
+    input[type="month"]:focus,
+    input[type="time"]:focus,
+    input[type="week"]:focus,
+    input[type="number"]:focus,
+    input[type="email"]:focus,
+    input[type="url"]:focus,
+    input[type="search"]:focus,
+    input[type="tel"]:focus,
+    input[type="color"]:focus,
+    .uneditable-input:focus,
+    .gform_wrapper li.gfield_error input[type="text"]:focus,
+    .gform_wrapper li.gfield_error input[type="url"]:focus,
+    .gform_wrapper li.gfield_error input[type="email"]:focus,
+    .gform_wrapper li.gfield_error input[type="tel"]:focus,
+    .gform_wrapper li.gfield_error input[type="number"]:focus,
+    .gform_wrapper li.gfield_error input[type="password"]:focus,
+    .gform_wrapper li.gfield_error textarea:focus{
+    border-color: @_arg;
+  }
+  .navbar .nav > .active > a,
+  .navbar .nav > .active > a:hover,
+  .navbar .nav > .active > a:focus,
+  .nav-pills > .active > a,
+  .nav-pills > .active > a:hover,
+  .nav-pills > .active > a:focus,
+  .nav-tabs.nav-stacked > .active > a,
+  .nav-tabs.nav-stacked > .active > a:hover,
+  .nav-tabs.nav-stacked > .active > a:focus,
+  .nav-list > .active > a,
+  .nav-list > .active > a:hover,
+  .nav-list > .active > a:focus,
+  .dropdown-menu > li > a:hover,
+  .dropdown-menu > li > a:focus,
+  .dropdown-submenu:hover > a,
+  .dropdown-submenu:focus > a,
+  .dropdown-menu > .active > a,
+  .dropdown-menu > .active > a:hover,
+  .dropdown-menu > .active > a:focus,
+  .progress .bar,
+  .progress-striped .bar,
+  .progress-info.progress-striped .bar, .progress-striped .bar-info,
+   nav[role="navigation"] .nav-pills-square li a:hover{
+    background-color:  @_arg;
+  }
+
+  .form-control:focus{
+        border-color: @_arg;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(red(@_arg),green(@_arg), blue(@_arg), 0.6);
+  }
+
+  .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus{
+        background-color: @_arg;
+        border-color: @_arg;
+  }
+
+}
+
+
+body, p, .gform_body .gfield input, .gform_body .gfield textarea, .gform_body .gfield select{
+  font-size: @pixelfont;
+    line-height: @line-height-base;
+}
+h1{
+    font-size: (@pixelfont * 3);
+    line-height: @line-height-base;
+}
+h2{
+    font-size: (@pixelfont * 1.5);
+    line-height: @line-height-base;
+}
+h3{
+    font-size: (@pixelfont * 1.17);
+    line-height: @line-height-base;
+}
+h4{
+    font-size: (@pixelfont * 1);
+    line-height: @line-height-base;
+}
+h5{
+    font-size: (@pixelfont * 0.83);
+    line-height: @line-height-base;
+}
+h6{
+    font-size: (@pixelfont * 0.75);
+    line-height: @line-height-base;
+}
+
+/*scrolltotop*/
+#topcontrol {
+    background-color: rgba(0, 0, 0, 0.1);
+    background-position: center center;
+    background-repeat: no-repeat;
+    -webkit-transition: all 0.2s ease-out;
+    -moz-transition: all 0.2s ease-out;
+    -o-transition: all 0.2s ease-out;
+    -ms-transition: all 0.2s ease-out;
+    transition: all 0.2s ease-out;
+    border-radius: 3px;
+    color: #FFFFFF;
+    height: 48px;
+    line-height: 55px;
+    margin: 0 15px 15px 0;
+    text-align: center;
+    width: 48px;
+    z-index: 10000;
+}
+#scrolltotop:before {
+    border-color: rgba(255, 255, 255, 0) rgba(255, 255, 255, 0) #FFFFFF;
+    border-image: none;
+    border-style: solid;
+    border-width: 10px;
+    content: "";
+    height: 0;
+    left: 28%;
+    position: absolute;
+    top: 17%;
+    width: 0;
+}
+
+#topcontrol:hover{
+    background-color: darken(@baseColor,10%);
+}
+
+/****************************END LESS CSS****************************/
+
+/****************************Overwrite CSS****************************/
+.element(@baseColor);
+
+.accent{
+  color: @baseColor !important;
+}
+
+.accent2{
+  color: #00a0c6 !important;
+}
+
+.accent3{
+  color: #e54496 !important;
+}
+
+/*
+* Buttons
+*/
+
+.btn-primary{
+	.btn(#00a0c6);
+	text-transform: uppercase;
+	font-size: 16px;
+	letter-spacing: 1px;
+	font-weight: 600;
+}
+
+.btn-custom{
+	.btn(#e54496);
+	border-color: #4d3e37;
+	background-color: transparent;
+	color: #4d3e37;
+}
+
+.btn-large {
+	padding: 13px 42px;
+}
+/*
+* Fonts
+*/
+
+.font-48 {
+	font-size: 48px;
+}
+
+.font-36 {
+	font-size: 36px;
+}
+
+
+.font-24 {
+	font-size: 24px;
+}
+
+.font-18 {
+	font-size: 18px;
+}
+
+.font-16 {
+	font-size: 16px;
+}
+
+.font-14 {
+	font-size: 14px;
+}
+/**************************** Homepage CSS ****************************/
+/*
+* Header
+*/
+.home .header-shadow {
+	box-shadow: none;
+}
+
+header img.brand {
+	max-width: 100%;
+	margin: 20 auto;
+}
+
+nav[role="navigation"] ul:first-child {
+	margin-right: 20px;
+	margin-top: 0;
+	margin-left: 0;
+}
+header nav[role="navigation"] .nav {
+    > li {
+			padding: 5px 10px;
+		> a {
+				color: @baseColor;
+				font-size: 16px;
+				font-weight: 200;
+				padding: 4px 5px;
+				-webkit-transition: all 0.3s ease;
+				-moz-transition: all 0.3s ease;
+				-o-transition: all 0.3s ease;
+				transition:all 0.3s ease;
+				border-top: 1px solid transparent;
+				border-bottom: 1px solid transparent;
+        .caret{
+           border-top-color: @lightColor;
+           border-bottom-color: @lightColor;
+        }
+        &:hover,&:active,&:focus {
+            color: @baseColor;
+						border-top: 1px solid @baseColor;
+						border-bottom: 1px solid @baseColor;
+            .caret{
+              border-top-color: @baseColor;
+              border-bottom-color: @baseColor;
+            }
+        }
+    }
+}
+    > li.active > a {
+       color: @baseColor;
+			 border-top: 1px solid @baseColor;
+			 border-bottom: 1px solid @baseColor;
+      .caret{
+        border-top-color: @baseColor;
+        border-bottom-color: @baseColor;
+      }
+    }
+}
+header .nav li a:hover, header .nav li a:focus {
+    background-color: transparent;
+    border-color: transparent;
+}
+nav[role="navigation"] ul > li .dropdown-menu > li:hover > a,
+nav[role="navigation"] ul > li .dropdown-menu > li > a:hover {
+    background: none repeat scroll 0 0 @baseColor;
+    color: #fff !important;
+			-webkit-transition: all 0.5s ease 0s;
+		transition: all 0.5s ease 0s;
+}
+
+/*
+* Footer
+*/
+.main-footer .hp-location h4 {
+	margin: 0;
+	span {
+		color: #ae958a;
+		font-weight: 600;
+	}
+}
+.main-footer address {
+	color: #ae958a;
+	font-size: 14px;
+	font-weight: 200;
+}
+
+.main-footer .nav {
+	columns: 2;
+	-webkit-columns: 2;
+	-moz-columns: 2;
+	li a {
+		font-size: 14px;
+		line-height: 1.715;
+		padding: 0;
+	}
+}
+
+.footer-logo {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: -55px;
+}
+
+/*
+* HP testimonial
+*/
+
+.hp-testimonial .fa {
+	display: none;
+}
+.hp-testimonial{
+	.testimonial-container {
+		position: relative !important;
+		.hp-quote {
+			position: absolute;
+			left: -70px;
+		}
+		div[itemprop="reviewBody"] {
+			padding-top: 20px;
+			margin-bottom: 34px;
+			line-height: 1.875;
+		}
+		p.text-right {
+			text-align: left;
+			line-height: 1.875;
+			margin: 0;
+		}
+	}
+}
+
+/*
+* Custom CSS
+*/
+.heading-liner {
+	background-color: rgb(77, 62, 55);
+	height: 1px;
+	max-width: 120px;
+	margin-top: 30px;
+}
+
+.liner-light {
+	background-color: #ffffff;
+}
+
+.letter-spacing-medium {
+	letter-spacing: 1.5px;
+}
+
+.line-height-large{
+	line-height: 1.875;
+}
+
+.line-height-small{
+	line-height: 1.2;
+}
+
+.display-inline-block{
+	display: inline-block;
+}
+.margin-top-30 {
+	margin-top: 30px;
+}
+
+
+/*
+* Media Queries
+*/
+
+@media (min-width: 992px) and (max-width: 1199px) {
+	header nav[role="navigation"] .nav > li {
+		padding: 5px;
+	}
+
+	.btn-main-nav {
+		padding: 10px;
+	}
+
+	.btn-banner {
+		margin-top: 0;
+	}
+
+	.margin-vertical-100 {
+		margin-top: 20px;
+		margin-bottom: 20px;
+	}
+
+	.margin-top-30 {
+		margin-top: 15px;
+	}
+
+	.font-60 {
+		font-size: 55px;
+	}
+}
+
+@media  (max-width: 991px) {
+	header img.brand {
+		margin: 50px auto;
+	}
+
+	header .margin-top-40 {
+		margin-top: 15px;
+	}
+
+	nav[role="navigation"] {
+		select {
+			display: block;
+		}
+		ul {
+			display: none;
+		}
+	}
+
+	nav[role="navigation"] select {
+		margin: 55px 0;
+	}
+
+	.btn-main-nav {
+		padding: 10px;
+		position: absolute;
+		right: 0;
+		top: 0;
+	}
+
+	.btn-banner {
+		margin-top: 0;
+		background-color: rgba(0,0,0,0.3);
+	}
+
+	.hp-testimonial .testimonial-container .hp-quote {
+		display: none;
+	}
+	.heading-liner {
+		margin: 30px auto;
+	}
+
+	.padding-bottom-40 {
+		padding-bottom: 0;
+	}
+
+	.sm-aglincenter {
+		margin: 0 auto;
+	}
+
+	.display-inline-block {
+		display: block;
+	}
+
+	.font-60 {
+		font-size: 40px;
+	}
+
+	.font-24 {
+		font-size: 19px;
+	}
+}
+
+@media (max-width: 767px) {
+	header .brand img {
+		width: 250px;
+		margin: 15 auto;
+	}
+
+	nav[role="navigation"] select {
+		margin: 0;
+	}
+
+	.btn-main-nav {
+		position: relative;
+		float: none !important;
+		display: inline-block;
+		margin: 20px auto;
+	}
+
+	.main-footer .nav {
+		columns: 1;
+		-webkit-columns: 1;
+		-moz-columns: 1;
+	}
+
+	.footer-logo {
+		top: -160px;
+	}
+
+	#menu-bottom-footer {
+		margin: 0 auto;
+		display: table;
+		float: none !important;
+	}
+
+	.margin-vertical-100 {
+		margin-top: 40px;
+		margin-bottom: 40px;
+	}
+
+	.margin-top-40 {
+		margin-top: 0;
+	}
+
+	.text-right {
+		text-align: center;
+	}
+
+	.font-60 {
+		font-size: 35px;
+	}
+
+	.font-24 {
+		font-size: 20px;
+	}
+}
